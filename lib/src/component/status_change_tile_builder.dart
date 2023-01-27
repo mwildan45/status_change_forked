@@ -49,7 +49,7 @@ class StatusChangeTileBuilder {
     );
 
     return StatusChangeTileBuilder._(
-      (context, index) {
+          (context, index) {
         final tile = StatusChangeTile(
           mainAxisExtent: itemExtentBuilder?.call(index),
           node: TimelineNode(
@@ -69,9 +69,9 @@ class StatusChangeTileBuilder {
   }
 
   const StatusChangeTileBuilder._(
-    this._builder, {
-    required this.itemCount,
-  })  : assert(_builder != null),
+      this._builder, {
+        required this.itemCount,
+      })   : assert(_builder != null),
         assert(itemCount != null && itemCount >= 0);
 
   final IndexedWidgetBuilder _builder;
@@ -86,9 +86,7 @@ class StatusChangeTileBuilder {
   }) {
     return (context, index) {
       if (index == 0) {
-        if (connectorBuilder != null) {
-          return connectorBuilder.call(index);
-        }
+        return Container(child: null,);
       }
 
       return connectorBuilder?.call(index);
@@ -100,8 +98,8 @@ class StatusChangeTileBuilder {
     required int itemCount,
   }) {
     return (context, index) {
-      if (index == itemCount - 1) {
-        return connectorBuilder?.call(index + 1);
+      if (itemCount != null && index == itemCount - 1) {
+        return null!;
       }
 
       return connectorBuilder?.call(index + 1);
